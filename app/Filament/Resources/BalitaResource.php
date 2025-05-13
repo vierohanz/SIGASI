@@ -2,34 +2,28 @@
 
 namespace App\Filament\Resources;
 
-
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\BalitaResource\Pages;
+use App\Filament\Resources\BalitaResource\RelationManagers;
+use App\Models\Balita;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class UserResource extends Resource
+class BalitaResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Balita::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationGroup = 'Management';
-    protected static ?string $navigationLabel = 'Pengguna';
-    protected static ?string $slug = 'pengguna';
-    protected static ?string $label = 'Pengguna';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -38,22 +32,30 @@ class UserResource extends Resource
                     ->label('NIK')
                     ->numeric()
                     ->required(),
-                TextInput::make('name')
-                    ->label('Name Lengkap')
-                    ->required(),
-                TextInput::make('email')
-                    ->label('Email')
-                    ->required(),
-                DatePicker::make('email_verified_at')
-                    ->label('Verifikasi Email'),
-                TextInput::make('password')
-                    ->label('Password')
-                    ->required(),
-                Select::make('roles')
-                    ->relationship('roles', 'name')
-                    ->multiple()
+                Select::make('users_id')
+                    ->label('Nama Ibu')
+                    ->relationship('users', 'name') // Asumsikan relasi bernama "tahun" dan field yang ditampilkan adalah "nama_tahun"
+                    ->searchable()
                     ->preload()
-                    ->searchable(),
+                    ->required(),
+                Select::make('kota_id')
+                    ->label('Kota')
+                    ->relationship('kota', 'nama_kota') // Asumsikan relasi bernama "tahun" dan field yang ditampilkan adalah "nama_tahun"
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                TextInput::make('nama_balita')
+                    ->label('Nama Balita')
+                    ->required(),
+                DatePicker::make('tanggal_lahir')
+                    ->label('Tanggal Lahir')
+                    ->required(),
+                Select::make('jenis_kelamin')
+                    ->options([
+                        'Laki-laki' => 'Laki-laki',
+                        'Perempuan' => 'Perempuan',
+                    ])
+                    ->required()
             ]);
     }
 
@@ -69,29 +71,28 @@ class UserResource extends Resource
                     ->label('NIK')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('name')
-                    ->label('Nama Lengkap')
+                TextColumn::make('users.name')
+                    ->label('Nama Ibu')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('email')
-                    ->label('Email')
-                    ->icon('heroicon-m-envelope')
+                TextColumn::make('nama_balita')
+                    ->label('Nama Anak')
                     ->searchable()
                     ->sortable(),
-                IconColumn::make('email_verified_at')
-                    ->label('Verifikasi Email')
+                TextColumn::make('tanggal_lahir')
+                    ->label('Tanggal Lahir')
                     ->searchable()
-                    ->sortable()
-                    ->trueIcon('heroicon-o-check-circle')
-                    ->falseIcon('heroicon-o-x-circle')
-                    ->trueColor('success')
-                    ->falseColor('danger')
-                    ->getStateUsing(fn($record) => filled($record->email_verified_at)),
+                    ->sortable(),
+                TextColumn::make('jenis_kelamin')
+                    ->label('Jenis Kelamin')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('kota.nama_kota')
+                    ->label('Kota')
+                    ->searchable()
+                    ->sortable(),
 
             ])
-            ->emptyStateIcon('heroicon-o-bookmark')
-            ->emptyStateHeading('No posts yet')
-            ->emptyStateDescription('Once you write your first post, it will appear here.')
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
@@ -118,9 +119,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListBalitas::route('/'),
+            'create' => Pages\CreateBalita::route('/create'),
+            'edit' => Pages\EditBalita::route('/{record}/edit'),
         ];
     }
 

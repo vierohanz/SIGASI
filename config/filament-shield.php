@@ -18,6 +18,7 @@ return [
 
     'auth_provider_model' => [
         'fqcn' => 'App\\Models\\User',
+
     ],
 
     'super_admin' => [
@@ -73,7 +74,8 @@ return [
         ],
 
         'widgets' => [
-            'AccountWidget', 'FilamentInfoWidget',
+            'AccountWidget',
+            'FilamentInfoWidget',
         ],
 
         'resources' => [],
