@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('kota_id')->references('id')->on('kota')->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('jumlah_posyandu');
             $table->enum('status', ['Aktif', 'Tidak Aktif']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

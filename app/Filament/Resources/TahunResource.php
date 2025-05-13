@@ -46,14 +46,24 @@ class TahunResource extends Resource
                     ->label('Tahun')
                     ->searchable()
                     ->copyable()
+                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->label('Created At')
+                    ->searchable()
+                    ->copyable()
+                    ->sortable(),
+                TextColumn::make('updated_at')
+                    ->label('Updated At')
+                    ->searchable()
+                    ->copyable()
                     ->sortable()
-
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
