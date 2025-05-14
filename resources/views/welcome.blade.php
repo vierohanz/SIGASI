@@ -9,7 +9,11 @@
 </head>
 
 <body class="text-black scroll-smooth">
-   
+
+</head>
+
+<body class="text-black scroll-smooth">
+
     <section id="home" class="">
         @include('sections.home')
     </section>
