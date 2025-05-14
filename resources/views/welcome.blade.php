@@ -6,13 +6,10 @@
     <title>Selamat Datang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
-    @livewire('database-notifications')
 </head>
 
 <body class="text-black scroll-smooth">
-    <button type="button">
-        Notifications ({{ $unreadNotificationsCount }} unread)
-    </button>
+   
     <section id="home" class="">
         @include('sections.home')
     </section>
