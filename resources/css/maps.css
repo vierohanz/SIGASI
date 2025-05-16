@@ -1,0 +1,85 @@
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 1.5s ease-out;
+    }
+
+    .basic{
+  width: 80%;
+  margin: auto; /* biar center */
+  justify-content: center;
+  border-radius: 1rem;
+    }
+
+    h2
+   {
+  font-size: 25px;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* untuk vertical center jika tinggi ditentukan */
+  margin-bottom: 30px;
+}
+    
+  .legend {
+    background: white;
+    padding: 10px;
+    line-height: 18px;
+    color: #555;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .legend div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .legend span {
+    width: 20px;
+    height: 18px;
+    margin-right: 8px;
+    display: inline-block;
+  }
+
+    .leaflet-control-select {
+    background: white;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  }
+
+    .info {
+    padding: 6px 8px;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+  }
+  .info h4 {
+    margin: 0 0 5px;
+    color: #777;
+  }
+
+    /* Map style */
+    #map {
+  height: 600px;
+  width: 79%;
+  margin: auto; /* biar center */
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}

@@ -1,8 +1,17 @@
-<div class="text-center bg-yellow-50 h-screen px-6">
-    <h1 class="text-5xl md:text-6xl font-extrabold mb-4">Selamat Datang di SIGASI</h1>
-    <p class="text-lg md:text-xl mb-8">Kelola event kamu dengan mudah dan profesional.</p>
-    <a href="#customer-service"
-        class="inline-block px-8 py-3 bg-white text-indigo-800 font-semibold rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
-        Mulai Sekarang
-    </a>
-</div>
+<section class="bg-center bg-cover h-screen bg-no-repeat bg-[url('https://bobobox.com/blog/wp-content/uploads/2021/11/tokoh-anak-anak-yang-mengubah-dunia-1200x675.jpg')] bg-gray-700 bg-blend-multiply">
+    <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">We invest in the world’s potential</h1>
+        <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+        <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+            <a href="#" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                Get started
+                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+            </a>
+            <a href="#" class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
+                Learn more
+            </a>  
+        </div>
+    </div>
+</section>
