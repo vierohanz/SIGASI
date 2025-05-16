@@ -14,6 +14,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use stdClass;
 
 class TahunResource extends Resource
 {
@@ -38,10 +39,12 @@ class TahunResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
+                TextColumn::make('No')
                     ->label('No')
-                    ->searchable()
-                    ->copyable(),
+                    ->getStateUsing(static function (stdClass $rowLoop): string {
+                        return (string) $rowLoop->iteration;
+                    })
+                    ->rowIndex(),
                 TextColumn::make('tahun')
                     ->label('Tahun')
                     ->searchable()

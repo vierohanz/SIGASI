@@ -20,6 +20,7 @@ use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use stdClass;
 
 class UserResource extends Resource
 {
@@ -61,10 +62,12 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
+                TextColumn::make('No')
                     ->label('No')
-                    ->searchable()
-                    ->sortable(),
+                    ->getStateUsing(static function (stdClass $rowLoop): string {
+                        return (string) $rowLoop->iteration;
+                    })
+                    ->rowIndex(),
                 TextColumn::make('nik')
                     ->label('NIK')
                     ->searchable()
