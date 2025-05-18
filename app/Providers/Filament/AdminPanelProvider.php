@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\Map;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -19,6 +20,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -32,7 +34,7 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => '#5273FF',
             ])
             ->spa()
-            // ->databaseNotifications()
+            ->databaseNotifications()
             ->favicon(asset('images/logo_fav.png'))
             ->darkModeBrandLogo(asset('images/logo_dark.png'))
             ->brandLogo(asset('images/logo_light.png'))
@@ -58,6 +60,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+
 
             ->authMiddleware([
                 Authenticate::class,

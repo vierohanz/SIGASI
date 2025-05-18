@@ -10,12 +10,15 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
+use stdClass;
 
 class BalitaResource extends Resource
 {
@@ -23,6 +26,7 @@ class BalitaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationGroup = 'Management';
+    protected static ?string $slug = 'balita';
 
     public static function form(Form $form): Form
     {
@@ -34,13 +38,13 @@ class BalitaResource extends Resource
                     ->required(),
                 Select::make('users_id')
                     ->label('Nama Ibu')
-                    ->relationship('users', 'name') // Asumsikan relasi bernama "tahun" dan field yang ditampilkan adalah "nama_tahun"
+                    ->relationship('users', 'name')
                     ->searchable()
                     ->preload()
                     ->required(),
                 Select::make('kota_id')
                     ->label('Kota')
-                    ->relationship('kota', 'nama_kota') // Asumsikan relasi bernama "tahun" dan field yang ditampilkan adalah "nama_tahun"
+                    ->relationship('kota', 'nama_kota')
                     ->searchable()
                     ->preload()
                     ->required(),
@@ -63,10 +67,12 @@ class BalitaResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
+                TextColumn::make('No')
                     ->label('No')
-                    ->searchable()
-                    ->sortable(),
+                    ->getStateUsing(static function (stdClass $rowLoop): string {
+                        return (string) $rowLoop->iteration;
+                    })
+                    ->rowIndex(),
                 TextColumn::make('nik')
                     ->label('NIK')
                     ->searchable()

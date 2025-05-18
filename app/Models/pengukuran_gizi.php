@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class pengukuran_gizi extends Model
 {
     use Notifiable,
-        HasFactory;
+        HasFactory,
+        SoftDeletes;
 
     protected $table = 'pengukuran_gizi';
     protected $primaryKey = 'id';

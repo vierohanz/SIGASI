@@ -4,21 +4,26 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PenyebaranResource\Pages;
 use App\Filament\Resources\PenyebaranResource\RelationManagers;
+use App\Filament\Widgets\Map;
 use App\Models\data_geo;
 use App\Models\Penyebaran;
 use App\Models\tahun;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\View;
 use Filament\Forms\Form;
+use Filament\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\Layout\View as LayoutView;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use stdClass;
 
 class PenyebaranResource extends Resource
 {
@@ -35,7 +40,7 @@ class PenyebaranResource extends Resource
             ->schema([
                 Select::make('tahun_id')
                     ->label('Tahun')
-                    ->relationship('tahun', 'tahun') // Asumsikan relasi bernama "tahun" dan field yang ditampilkan adalah "nama_tahun"
+                    ->relationship('tahun', 'tahun')
                     ->searchable()
                     ->preload()
                     ->required(),
@@ -48,7 +53,7 @@ class PenyebaranResource extends Resource
                 TextInput::make('prevalensi_stunting')
                     ->label('Tingkat Stunting')
                     ->numeric()
-                    ->required()
+                    ->required(),
 
             ]);
     }
@@ -57,11 +62,13 @@ class PenyebaranResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
+
+                TextColumn::make('No')
                     ->label('No')
-                    ->searchable()
-                    ->copyable()
-                    ->sortable(),
+                    ->getStateUsing(static function (stdClass $rowLoop): string {
+                        return (string) $rowLoop->iteration;
+                    })
+                    ->rowIndex(),
                 TextColumn::make('tahun.tahun')
                     ->label('Tahun')
                     ->sortable()
@@ -88,6 +95,7 @@ class PenyebaranResource extends Resource
                     ->searchable()
                     ->copyable()
                     ->sortable(),
+
             ])
             ->emptyStateDescription('Once you write your first post, it will appear here.')
             ->filters([
@@ -105,10 +113,13 @@ class PenyebaranResource extends Resource
                         '7' => '2027',
                     ]),
             ])
+
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+
             ])
+
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
@@ -131,14 +142,20 @@ class PenyebaranResource extends Resource
             'index' => Pages\ListPenyebarans::route('/'),
             'create' => Pages\CreatePenyebaran::route('/create'),
             'edit' => Pages\EditPenyebaran::route('/{record}/edit'),
+
         ];
     }
-
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            Map::class,
+        ];
     }
 }

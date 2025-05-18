@@ -5,4 +5,4 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/getMap', [mapsController::class, 'getMap'])->name('getMaps');
-Route::get('/getMap', [mapsController::class, 'getMapByTahun'])->name('getMapByTahun');
+Route::get('/getMapByTahun/', [mapsController::class, 'getMapByTahun'])->name('getMapByTahun');

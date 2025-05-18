@@ -8,11 +8,14 @@
     "require": {
         "php": "^8.2",
         "bezhansalleh/filament-shield": "^3.3",
+        "cheesegrits/filament-google-maps": "^3.0",
         "filament/filament": "3.3",
         "filament/notifications": "3.3",
+        "filament/widgets": "*",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.1",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "webbingbrasil/filament-maps": "^3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
