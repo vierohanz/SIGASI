@@ -1,12 +1,279 @@
-@import "tailwindcss";
-
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
-@theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
+/* Font dan Reset Dasar */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #ffffff, #fff7ea);
+  color: #333;
 }
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background-color: #fff7d6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar .logo {
+  background: #ddd;
+  width: 80px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #444;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+.navbar a:hover {
+  color: #ff6600;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 60px 32px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  color: #c2460e;
+  margin-bottom: 8px;
+}
+
+.hero-text h2 {
+  font-size: 14px;
+  color: #c2460e;
+  margin-bottom: 12px;
+}
+
+.hero-text p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.hero img {
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-top: 24px;
+}
+
+/* Fitur Utama */
+.fitur {
+  text-align: center;
+  padding: 60px 32px;
+}
+
+.fitur h2 {
+  font-size: 28px;
+  color: #c2460e;
+  margin-bottom: 40px;
+}
+
+.fitur-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #fff7d6;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.card h3 {
+  color: #c2460e;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.card a {
+  background: #ff6600;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.card a:hover {
+  background: #e65500;
+}
+
+.text-orange-600 {
+  color: #BE3D2A;
+}
+
+.text-orange-700 {
+  color: #BE3D2A;
+}
+
+.carousel-inner img {
+  object-fit: cover;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .text-section {
+    text-align: center;
+  }
+  .carousel-section {
+    margin-left: 0;
+  }
+}
+.custom-shadow {
+  box-shadow: 0px 8px 20px rgba(201, 92, 92, 0.1);
+}
+
+.fitur-utama {
+  padding: 60px 20px;
+  background: linear-gradient(to bottom, #f0cfc7, #ffffff);
+  text-align: center;
+}
+
+.fitur-utama h2 {
+  font-size: 32px;
+  color: #c1440e;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.fitur-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.fitur-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  width: 320px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fitur-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.fitur-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+}
+
+.fitur-card h3 {
+  color: #f36100;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.fitur-card p {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f36100;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #d95400;
+}
+
+.statistik-section {
+  padding: 40px 20px;
+  background: linear-gradient(to bottom right, #fef8f3, #fff);
+  text-align: center;
+}
+
+.section-title {
+  font-size: 28px;
+  color: #b45309;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.statistik-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.stat-card {
+  background-color: #fff;
+  border: 2px solid #fde68a;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 25px 20px;
+  width: 220px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #047857;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #555;
+}
+
